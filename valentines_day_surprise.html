@@ -1,32 +1,112 @@
-
 <!DOCTYPE html>
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Valentine's Day Surprise</title>  
-    <style>  
-        body {  
-            background-color: pink;  
-            text-align: center;  
-            font-family: Arial, sans-serif;  
-        }  
-        h1 { color: red; }  
-        .heart {  
-            font-size: 50px;  
-            cursor: pointer;  
-        }  
-    </style>  
-</head>  
-<body>  
-    <h1>Fuck valentine's day, I love u everyday♾️❤️ :3</h1>  
-    <p>be a goodgirl and click the heart!</p>  
-    <div class="heart" onclick="showMessage()">💝</div>  
-    <p id="message" style="display: none;">I LOVE YOU MY BABY PRINCESS! ❤️💕 MWAH💋</p>  
-    <script>  
-        function showMessage() {  
-            document.getElementById("message").style.display = "block";  
-        }  
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Surprise</title>
+    <style>
+        /* Romantic Gradient Background */
+        body {
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fbc2eb);
+            text-align: center;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Cool Title with Neon Glow */
+        h1 {
+            font-size: 28px;
+            font-family: 'Pacifico', cursive;
+            color: white;
+            text-shadow: 0 0 5px #ff4e50, 0 0 10px #ff7675, 0 0 15px #ff8a80;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #ff4e50, 0 0 10px #ff7675, 0 0 15px #ff8a80; }
+            100% { text-shadow: 0 0 8px #ff4e50, 0 0 15px #ff6b6b, 0 0 20px #ff4e50; }
+        }
+
+        .heart {
+            font-size: 70px;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .heart.clicked {
+            transform: scale(1.5);
+            animation: bounce 0.6s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.7); }
+            100% { transform: scale(1.2); }
+        }
+
+        .floating-hearts {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            animation: float 1.5s ease-in-out forwards;
+        }
+
+        @keyframes float {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-100px); }
+        }
+
+        #message {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            font-size: 18px;
+            color: darkred;
+            font-weight: bold;
+        }
+
+        #message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>since ur my amazing sister, here's a surprise for my pookie :3</h1>
+    <p>thank u for being the most amazing sister ever</p>
+    <div class="heart" onclick="showMessage()">🎀</div>
+    <p id="message">I LOVE YOU UR MY BEST SISTY IN THE WORDLDLDD ❤️</p>
+
+    <script>
+        function showMessage() {
+            var heart = document.querySelector('.heart');
+            var message = document.getElementById('message');
+
+            heart.classList.add('clicked');
+            message.classList.add('show');
+
+            // Create floating hearts effect
+            for (let i = 0; i < 5; i++) {
+                let floatingHeart = document.createElement('div');
+                floatingHeart.classList.add('floating-hearts');
+                floatingHeart.innerHTML = '❤️';
+                floatingHeart.style.left = (heart.offsetLeft + Math.random() * 50 - 25) + 'px';
+                floatingHeart.style.top = (heart.offsetTop - 20) + 'px';
+                document.body.appendChild(floatingHeart);
+
+                setTimeout(() => {
+                    floatingHeart.remove();
+                }, 1500);
+            }
+
+            // Remove the bounce effect after animation
+            setTimeout(() => {
+                heart.classList.remove('clicked');
+            }, 600);
+        }
     </script>
-</body>  
+</body>
 </html>
